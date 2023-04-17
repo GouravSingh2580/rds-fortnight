@@ -18,7 +18,7 @@ db_conn = connections.Connection(
 
 )
 output = {}
-table = 'employee'
+table = 'rangers'
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -28,7 +28,7 @@ def home():
 
 @app.route("/about", methods=['POST'])
 def about():
-    return render_template('www.intellipaat.com')
+    return render_template('https://gouravsingh.vercel.app/')
 
 
 @app.route("/addemp", methods=['POST'])
@@ -40,7 +40,8 @@ def AddEmp():
     location = request.form['location']
     emp_image_file = request.files['emp_image_file']
 
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO rangers VALUES (%s, %s, %s, %s, %s)"
+    print("Inserting rangers data into RDS MySQL table", insert_sql)
     cursor = db_conn.cursor()
 
     if emp_image_file.filename == "":
