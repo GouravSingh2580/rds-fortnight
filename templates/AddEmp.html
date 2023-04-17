@@ -1,37 +1,149 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Add Employee Information</title>
+  <title>Join the SPD Taskforce as a Red Ranger</title>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    h1 {
+      color: red;
+      text-align: center;
+      margin-top: 30px;
+	  font-family: Brush Script MT, Brush Script Std, cursive;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px #ddd;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="file"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      color: #555;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      padding-top: 15px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      display: block;
+      background-color: red;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    .error-message {
+      color: red;
+      font-size:14px;
+margin-top: 5px;
+}
+
+.about-link {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.about-link:hover {
+  color: #555;
+}
+
+</style>
 </head>
-<center>
-	<font color="black" size="4" style="font-family: avenir">
 
-		<h1 style="color: DodgerBlue">Employee Database</h1>
+<body>
 
-		<body bgcolor="lightgrey">
+<header>
+<h1>Join the SPD Taskforce as a Red Ranger</h1>
+</header>
 
-			<form action="/addemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
+<form action="/addemp" autocomplete="on" method="POST" enctype="multipart/form-data">
+<label for="emp_id">Ranger ID:</label>
+<input type="number" id="emp_id" name="emp_id" autofocus required>
 
-				<button type="submit" formaction="/getemp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET EMPLOYEE INFORMATION</button><br><br>
+<label for="first_name">First Name:</label>
+<input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
 
-		  		Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40"><br><br>
+<label for="last_name">Last Name:</label>
+<input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
 
-		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" ><br><br>
+<label for="pri_skill">Combat Skills:</label>
+<input type="text" id="pri_skill" name="pri_skill" placeholder="Enter primary skills">
 
-		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name"><br><br>
+<label for="location">Location:</label>
+<input type="text" id="location" name="location" placeholder="Enter location">
 
-		  		Primary Skills:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill"><br><br>
+<label for="emp_image_file">Image:</label>
+<input type="file" id="emp_image_file" name="emp_image_file" accept="image/*">
 
-		  		Location:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="location"><br><br>
+<button type="submit">ADD EMPLOYEE</button>
+</form>
 
-		  		Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+<a href="/about" class="about-link">About Us</a>
 
-		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">UPDATE DATABASE</button>
+<script>
+const form = document.querySelector('form');
 
-			</form>
-<a href="/about">About Us</a>
-		</body>
+form.addEventListener('submit', (event) => {
+  const empId = document.getElementById('emp_id').value;
+  const firstName = document.getElementById('first_name').value;
+  const lastName = document.getElementById('last_name').value;
 
-	</font>
-</center>
+  if (!empId || !firstName || !lastName) {
+    event.preventDefault();
+    const errorMessage = document.createElement('p');
+    errorMessage.classList.add('error-message');
+    errorMessage.textContent = 'Please fill out all required fields.';
+    form.appendChild(errorMessage);
+  }
+});
+</script>
+</body>
+
 </html>
